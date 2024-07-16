@@ -5,12 +5,6 @@ function getComputerChoice() {
   return choices[randomIndex];
 }
 
-// 创建一个函数获取用户输入并返回
-function getHumanChoice() {
-  let human = prompt("What do you want? Rock, Paper or Scissors?");
-  return human;
-}
-
 // 声明玩家和电脑的得分变量
 let humanScore = 0;
 let computerScore = 0;
@@ -20,9 +14,10 @@ function playRound(humanChoice, computerChoice) {
   let human = humanChoice.toLowerCase();
   let compute = computerChoice.toLowerCase();
   let resultDiv = document.querySelector("#result");
+  let scoreDiv = document.getElementById("score");
 
   if (human === compute) {
-    console.log("平局");
+    resultDiv.textContent = "平局";
   } else if (
     (human === "rock" && compute === "scissors") ||
     (human === "scissors" && compute === "paper") ||
@@ -33,6 +28,20 @@ function playRound(humanChoice, computerChoice) {
   } else {
     resultDiv.textContent = `你输了，${computerChoice}战胜${humanChoice}`;
     computerScore++;
+  }
+
+  scoreDiv.innerText = `你: ${humanScore} - 电脑: ${computerScore}`;
+
+  // 判断是否有一方达到5分
+  if (humanScore === 5 || computerScore === 5) {
+    if (humanScore > computerScore) {
+      resultDiv.innerText = `游戏结束！你赢了，最终得分 你: ${humanScore} - 电脑: ${computerScore}`;
+    } else {
+      resultDiv.innerText = `游戏结束！你输了，最终得分 你: ${humanScore} - 电脑: ${computerScore}`;
+    }
+    // // 重置得分
+    humanScore = 0;
+    computerScore = 0;
   }
 }
 
@@ -47,6 +56,3 @@ document.querySelector("#scissors").addEventListener("click", () => {
 document.querySelector("#paper").addEventListener("click", () => {
   playRound("paper", getComputerChoice());
 });
-
-// 开始游戏
-playGame();
