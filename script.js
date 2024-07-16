@@ -19,6 +19,7 @@ let computerScore = 0;
 function playRound(humanChoice, computerChoice) {
   let human = humanChoice.toLowerCase();
   let compute = computerChoice.toLowerCase();
+  let resultDiv = document.querySelector("#result");
 
   if (human === compute) {
     console.log("平局");
@@ -27,10 +28,10 @@ function playRound(humanChoice, computerChoice) {
     (human === "scissors" && compute === "paper") ||
     (human === "paper" && compute === "rock")
   ) {
-    console.log(`你赢了，${humanChoice}战胜${computerChoice}`);
+    resultDiv.textContent = `你赢了，${humanChoice}战胜${computerChoice}`;
     humanScore++;
   } else {
-    console.log(`你输了，${computerChoice}战胜${humanChoice}`);
+    resultDiv.textContent = `你输了，${computerChoice}战胜${humanChoice}`;
     computerScore++;
   }
 }
