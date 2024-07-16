@@ -35,24 +35,17 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-// 创建一个函数进行5轮游戏
-function playGame() {
-  // 进行5轮游戏
-  for (let i = 0; i < 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-  }
+document.querySelector("#rock").addEventListener("click", () => {
+  playRound("rock", getComputerChoice());
+});
 
-  // 最终宣布胜者
-  if (humanScore > computerScore) {
-    console.log(`最终你赢了，你有${humanScore}分，电脑有${computerScore}分`);
-  } else if (humanScore < computerScore) {
-    console.log(`最终你输了，你有${humanScore}分，电脑有${computerScore}分`);
-  } else {
-    console.log(`最终平局，你有${humanScore}分，电脑有${computerScore}分`);
-  }
-}
+document.querySelector("#scissors").addEventListener("click", () => {
+  playRound("scissors", getComputerChoice());
+});
+
+document.querySelector("#paper").addEventListener("click", () => {
+  playRound("paper", getComputerChoice());
+});
 
 // 开始游戏
 playGame();
